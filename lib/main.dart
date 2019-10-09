@@ -41,6 +41,7 @@ class _QuizPageState extends State<QuizPage> {
  void restartQuiz(){
    setState(() {
      brain.questionNumber=0;
+     scoreKeeper.clear();
    });
  }
  void checkAnswer(bool userAnswer){
@@ -54,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
      }
      brain.nextQuestion();
      finishedQuestions=brain.questionNumber;
-     if(brain.questionNumber==brain.questions.length )
+     if(brain.questionNumber==brain.questions.length-1 )
             {
               Alert(
                 context: context,
@@ -69,6 +70,7 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                     onPressed: () {
                       restartQuiz();
+                      Navigator.pop(context);
                     },
                     width: 120,
                   )
